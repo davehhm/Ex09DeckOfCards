@@ -2,6 +2,7 @@ package deck
 
 import (
 	"fmt"
+	"testing"
 )
 
 func ExampleCard() {
@@ -17,4 +18,12 @@ func ExampleCard() {
 	// Ten_Club
 	// Queen_Diamond
 	// Joker
+}
+
+func TestNewDeck(t *testing.T) {
+	d := New(3)
+
+	if len(d) != 13*4*3 {
+		t.Errorf("Expected %d cards in 3 decks, returned %d", 13*4*3, len(d))
+	}
 }
