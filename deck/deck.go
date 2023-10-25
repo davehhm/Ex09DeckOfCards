@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+//go:generate stringer -type=suit,rank
 type suit int16
 
 const (
@@ -18,7 +19,7 @@ const (
 	Diamond
 )
 
-func (s suit) String() string {
+/* func (s suit) String() string {
 	switch s {
 	case Spade:
 		return "spade"
@@ -30,7 +31,7 @@ func (s suit) String() string {
 		return "diamond"
 	}
 	return "undefined"
-}
+} */
 
 type rank int16
 
@@ -52,7 +53,7 @@ const (
 	Joker
 )
 
-func (r rank) String() string {
+/* func (r rank) String() string {
 	switch r {
 	case Ace:
 		return "A"
@@ -84,11 +85,19 @@ func (r rank) String() string {
 		return "Joker"
 	}
 	return "undefined"
-}
+} */
 
 type Card struct {
 	R rank
 	S suit
+}
+
+func (c Card) String() string {
+	if c.R == Joker {
+		return c.R.String()
+	} else {
+		return c.R.String() + "_" + c.S.String()
+	}
 }
 
 // New a card deck, accepting options
